@@ -1,0 +1,57 @@
+{% extends "layout/register.html" %} {% block header %} {% block title %}login{% endblock %} {% endblock %} {% block content %}
+<div class="grid grid-cols-1 md:grid-cols-2 bg-gray-200 h-screen">
+    <div>
+        <img src="/static/images/logo/IMG-20230720-WA0003.jpg" class="hidden sm:block h-[38rem]" alt="">
+    </div>
+    <div class="justify-center items-center flex h-screen">
+        <div class="pt-6 max-w-sm w-full md:w-[50%] pb-8 mb-4 bg-white shadow-inner shadow-gray-200 rounded-lg">
+            <div class="px-10">
+                <div class="justify-center flex mb-4 h-10">
+                    <img src="/static/images/logo/Iconect.png" alt="">
+                </div>
+                <h2 class="text-2xl font-bold mb-6 text-center text-gray-500">Login</h2>
+                {% if error %}
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-2">
+                    {{ error }}
+                </div>
+                {% endif %} {% if success_message %}
+                <div class="alert alert-success text-xs text-green-500">
+                    {{ success_message }}
+                </div>
+                {% endif %}
+                <form method="POST" action="/login">
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-500 text-sm font-semibold mb-2">Email</label>
+                        <input type="email" name="email" id="email" class="w-full border border-gray-300 rounded py-2 px-4 text-xs " placeholder="Email" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="password" class="block text-gray-500 text-sm font-semibold mb-2">Password</label>
+                        <input type="password" name="password" id="password" class="w-full border border-gray-300 rounded py-2 px-4 text-xs" placeholder="Password" required>
+                    </div>
+                    <button class="w-full mb-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded" type="submit">Login</button>
+                </form>
+                <div class="text-center">
+                    <p class="text-gray-500 text-xs">Belum Punya Akun...? Klik <a href="{{ url_for('register') }}" class="hover:text-blue-600 text-blue-500 text-sm">Register</a></p>
+                </div>
+            </div>
+            <div class="items-center justify-center flex gap-2 mt-4">
+                <a href="/facebook-login" class="cursor-pointer">
+                    <!-- Facebook SVG icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                            <path d="M20.283 10.356h-8.327v3.451h4.792c-.446 2.193-2.313 3.453-4.792 3.453a5.27 5.27 0 0 1-5.279-5.28 5.27 5.27 0 0 1 5.279-5.279c1.259 0 2.397.447 3.29 1.178l2.6-2.599c-1.584-1.381-3.615-2.233-5.89-2.233a8.908 8.908 0 0 0-8.934 8.934 8.907 8.907 0 0 0 8.934 8.934c4.467 0 8.529-3.249 8.529-8.934 0-.528-.081-1.097-.202-1.625z"></path>
+                        </svg>
+                </a>
+
+                <a href="/google-login" class="cursor-pointer">
+                    <!-- Google SVG icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                            <path d="M12.001 2.002c-5.522 0-9.999 4.477-9.999 9.999 0 4.99 3.656 9.126 8.437 9.879v-6.988h-2.54v-2.891h2.54V9.798c0-2.508 1.493-3.891 3.776-3.891 1.094 0 2.24.195 2.24.195v2.459h-1.264c-1.24 0-1.628.772-1.628 1.563v1.875h2.771l-.443 2.891h-2.328v6.988C18.344 21.129 22 16.992 22 12.001c0-5.522-4.477-9.999-9.999-9.999z"></path>
+                        </svg>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

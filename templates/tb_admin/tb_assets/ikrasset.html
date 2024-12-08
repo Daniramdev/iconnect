@@ -1,0 +1,217 @@
+ {% extends "layout/managedata.html" %} {% block header %} {% block title %}Tabel Akumulasi{% endblock %} {% endblock %} {% block content %}
+<div id="main">
+    <div class="px-4">
+        <h1 class="md:text-xl text-sm font-bold mt-2 mb-2">DATA ASSET SPBU JAWA BARAT</h1>
+        <h2 class="text-sm font-bold mt-2 mb-2">Data Akumulasi</h2>
+        <div class="container mx-auto items-center flex text-xs mb-2">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <form action="#" method="post" enctype="multipart/form-data">
+                    <div class="mb-4 items-center flex">
+                        <label for="file" class="block text-gray-700 text-sm"></label>
+                        <input type="file" name="file" id="file" class="py-1 w-32">
+                        <div class="items-center flex gap-3">
+                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                        Import
+                                    </button>
+                            <div>
+                                <a href="#" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                        Export
+                                        </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form action="/process_option" method="POST">
+                    <div class="items-center flex text-xs mb-2">
+                        <select id="dataOption" name="option" class="px-2 py-2 border bg-white">
+                                <option value="datarow">Data Map1</option>
+                                <option value="tb_olt">Tb_Olt</option>
+                               
+                                </select>
+                        <input class="bg-gray-500 text-white hover:bg-slate-400 py-2 rounded-r px-2" type="submit" value="Submit">
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div id="optionPages" class="w-full mx-auto mt-4 ">
+            <div id="pageOption1" class="bg-white border  p-4 rounded-md shadow-md" style="display: none;">
+                <div class="overflow-x-auto text-xs">
+                    <table id="dataTablePage1" class="table-auto w-full bg-gray-300 rounded-t">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="px-2 py-3">Rowlabel</th>
+                                <th class="px-2 py-3">Sum of HOMEPASS</th>
+                                <th class="px-2 py-3">Sum of HOME CONNECTED</th>
+                                <th class="px-2 py-3">Sum of % TUR</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            {% for row in mapdata %}
+                            <tr>
+                                <td class="px-1 py-1 border">{{row.label_up3_karawang }}</td>
+                                <td class="px-1 py-1 border">{{row.hp_karawang }}</td>
+                                <td class="px-1 py-1 border">{{row.hc_karawang }}</td>
+                                <td class="px-1 py-1 border">{{row.tur_karawang }}%</td>
+
+                                <td class="px-1 py-1 border">{{row.label_up3_purwakarta }}</td>
+                                <td class="px-1 py-1 border">{{row.hp_purwakarta }}</td>
+                                <td class="px-1 py-1 border">{{row.hc_purwakarta }}</td>
+                                <td class="px-1 py-1 border">{{row.tur_purwakarta }}%</td>
+
+                                <td class="px-1 py-1 border">{{row.label_up3_sumedang }}</td>
+                                <td class="px-1 py-1 border">{{row.hp_sumedang }}</td>
+                                <td class="px-1 py-1 border">{{row.hc_sumedang }}</td>
+                                <td class="px-1 py-1 border">{{row.tur_sumedang }}%</td>
+
+                                <td class="px-1 py-1 border">{{row.label_up3_bandung }}</td>
+                                <td class="px-1 py-1 border">{{row.hp_bandung }}</td>
+                                <td class="px-1 py-1 border">{{row.hc_bandung }}</td>
+                                <td class="px-1 py-1 border">{{row.tur_bandung }}%</td>
+
+                                <td class="px-1 py-1 border">{{row.label_up3_sukabumi }}</td>
+                                <td class="px-1 py-1 border">{{row.hp_sukabumi }}</td>
+                                <td class="px-1 py-1 border">{{row.hc_sukabumi }}</td>
+                                <td class="px-1 py-1 border">{{row.tur_sukabumi }}%</td>
+
+                                <td class="px-1 py-1 border">{{row.label_up3_cianjur }}</td>
+                                <td class="px-1 py-1 border">{{row.hp_cianjur }}</td>
+                                <td class="px-1 py-1 border">{{row.hc_cianjur }}</td>
+                                <td class="px-1 py-1 border">{{row.tur_cianjur }}%</td>
+
+                                <td class="px-1 py-1 border">{{row.label_up3_indramayu}}</td>
+                                <td class="px-1 py-1 border">{{row.hp_indramayu}}</td>
+                                <td class="px-1 py-1 border">{{row.hc_indramayu}}</td>
+                                <td class="px-1 py-1 border">{{row.tur_indramayu}}%</td>
+
+                                <td class="px-1 py-1 border">{{row.label_up3_cirebon }}</td>
+                                <td class="px-1 py-1 border">{{row.hp_cirebon }}</td>
+                                <td class="px-1 py-1 border">{{row.hc_cirebon }}</td>
+                                <td class="px-1 py-1 border">{{row.tur_cirebon }}%</td>
+
+                                <td class="px-1 py-1 border">{{row.label_up3_tasikmalaya }}</td>
+                                <td class="px-1 py-1 border">{{row.hp_tasikmalaya }}</td>
+                                <td class="px-1 py-1 border">{{row.hc_tasikmalaya }}</td>
+                                <td class="px-1 py-1 border">{{row.tur_tasikmalaya }}%</td>
+
+                                <td class="px-1 py-1 border">{{row.label_up3_cimahi }}</td>
+                                <td class="px-1 py-1 border">{{row.hp_cimahi }}</td>
+                                <td class="px-1 py-1 border">{{row.hc_cimahi }}</td>
+                                <td class="px-1 py-1 border">{{row.tur_cimahi }}%</td>
+
+                                <td class="px-1 py-1 border">{{row.label_up3_majalaya}}</td>
+                                <td class="px-1 py-1 border">{{row.hp_majalaya}}</td>
+                                <td class="px-1 py-1 border">{{row.hc_majalaya}}</td>
+                                <td class="px-1 py-1 border">{{row.tur_majalaya}}%</td>
+
+                                <td class="px-1 py-1 border">{{row.label_up3_garut}}</td>
+                                <td class="px-1 py-1 border">{{row.hp_garut}}</td>
+                                <td class="px-1 py-1 border">{{row.hc_garut}}</td>
+                                <td class="px-1 py-1 border">{{row.tur_garut}}%</td>
+
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                    <div class="mt-4">
+                        <!-- Option to delete all data -->
+                        <form method="post" action="#" onsubmit="return confirm('Are you sure you want to delete all data?')">
+                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Delete All Data</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mx-auto">
+            <div class="flex justify-end w-full bg-white">
+                <button id="prevPage" class="bg-white px-2 hover:bg-gray-400 rounded"><i class='bx bx-chevron-left'></i> Previous
+                </button>
+                <div id="pageInfo" class="p-2 text-center bg-white">Page <span id="currentPage">1</span> / <span id="totalPages">1</span></div>
+                <button id="nextPage" class="bg-white px-3 hover:bg-gray-400 rounded ">Next <i class='bx bx-chevron-right'></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function toggleDropdown(dropdownId) {
+        var dropdown = document.getElementById(dropdownId);
+
+        // Check if the dropdown is currently visible
+        var isVisible = dropdown.style.display === 'block';
+
+        // Hide all dropdowns
+        var allDropdowns = document.getElementsByClassName('dropdown-content');
+        for (var i = 0; i < allDropdowns.length; i++) {
+            allDropdowns[i].style.display = 'none';
+        }
+
+        // Toggle the selected dropdown based on its current visibility
+        dropdown.style.display = isVisible ? 'none' : 'block';
+    }
+
+    function closeNav() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
+
+    function openNav() {
+        document.getElementById("mySidebar").style.width = "200px";
+        document.getElementById("main").style.marginLeft = "200px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+    }
+    $(document).ready(function() {
+        $('#dataTablePage1').DataTable({
+            responsive: true,
+            searching: true,
+            paging: true,
+            lengthMenu: [10, 20, 50, 100],
+            pageLength: 10,
+        });
+
+
+    });
+    let currentPage = 1;
+    const totalPages = 1; // Assuming there are 4 pages
+
+    function showPage(pageNumber) {
+        const allPages = $("#optionPages > div");
+        allPages.hide();
+
+        const selectedPage = $(`#pageOption${pageNumber}`);
+        if (selectedPage.length) {
+            selectedPage.show();
+        }
+
+        // Update page info
+        $("#currentPage").text(pageNumber);
+    }
+
+    $("#prevPage").on("click", function() {
+        if (currentPage > 1) {
+            currentPage--;
+            showPage(currentPage);
+        }
+    });
+
+    $("#nextPage").on("click", function() {
+        if (currentPage < totalPages) {
+            currentPage++;
+            showPage(currentPage);
+        }
+    });
+
+    // Initial page display
+    showPage(currentPage);
+    $("#totalPages").text(totalPages);
+</script>
+
+{% endblock%}

@@ -1,0 +1,147 @@
+{% extends "layout/user.html" %} {% block title %}Dashboard Assets Spbu Jabar {% endblock %} {% block content %}
+<div class="relative px-1">
+    <div class="grid md:grid-cols-5 grid-cols-1 gap-2 mb-4">
+        <div class="h-60  w-full bg-white shadow-lg rounded justify-center items-center flex">
+            <img src="/static/images/logo/Iconect.png" class="h-10" alt="">
+        </div>
+        <div class="w-full bg-white md:h-60 max-h-[100%] shadow-lg rounded md:col-span-2 col-span-1 gap-1">
+            <div class="text-center py-2 rounded shadow-lg-t font-bold  bg-gray-800 text-white">
+                <h1>DATA ASSET SPBU JAWA BARAT</h1>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 py-1 px-2">
+                <div class="bg-white h-full text-center  rounded shadow-lg">
+                    <div class="border rounded py-2 bg-slate-900 text-white ">
+                        <p>HOME PASS JBB</p>
+                    </div>
+                    <div class="py-3">
+                        <p>{{ totalhp }}</p>
+                    </div>
+
+                </div>
+                <div class="bg-white  h-full text-center  rounded shadow-lg">
+                    <div class="border rounded py-2 bg-slate-900 text-white">
+                        <p>HOME CONNECTED</p>
+                    </div>
+                    <div class="py-3">
+                        <p>{{ totalhc}}</p>
+                    </div>
+
+                </div>
+                <div class="bg-white  h-full text-center rounded shadow-lg">
+                    <div class="border rounded py-2 bg-slate-950 text-white ">
+                        <p>TUR JBB</p>
+                    </div>
+                    <div class="py-3">
+                        <p>{{formatted_totaltur}}</p>
+                    </div>
+
+                </div>
+                <div class="bg-white h-full text-center  rounded shadow-lg">
+                    <div class="border rounded py-2 bg-slate-950 shadow-lg text-white">
+                        <p>TOTAL OLT</p>
+                    </div>
+                    <div class="py-3">
+                        <p>{{ totalSum }}</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="h-full w-full bg-gray-700 rounded shadow-lg md:col-span-2 col-span-1 justify-between flex">
+            <div class="h-full bg-gray-100  w-full" id="dgrmbandung"></div>
+            <div class=" w-40 text-sm">
+                <div class="text-center py-2 bg-gray-900 rounded-t shadow-lg-t text-white">
+                    <p>BANDUNG</p>
+                </div>
+                <div class="text-center bg-gray-700  text-white">
+                    <p class="border py-3">TOTAL OLT</p>
+                    <div class="border-b py-3">
+                        <p>{{ totaloltbdg_sum }}</p>
+                    </div>
+                </div>
+                <div class="text-center bg-gray-700  text-white">
+                    <p class="border-b py-3">TOTAL PORT</p>
+                    <div class="border-b py-3">
+                        <p>{{ totalportbdg_sum }}</p>
+                    </div>
+                </div>
+                <div class="text-center  bg-gray-700  text-white">
+                    <p class="border-b py-3">IDLE PORT</p>
+                    <div class="py-3 border-b">
+                        <p>{{ idleportbdg_sum }}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="max-h-full h-96 w-full bg-gray-100 rounded shadow-lg md:col-span-3 col-span-1 md:-mt-16" id="dgrmassets1"></div>
+        <div class="h-full w-full bg-gray-700 rounded shadow-lg md:col-span-2 col-span-1 flex">
+            <div class=" bg-gray-400  w-full" id="cirebon"></div>
+            <div class=" w-40 text-sm">
+                <div class="text-center py-2 bg-gray-900  rounded shadow-lg-t text-white">
+                    <p>CIREBON</p>
+                </div>
+                <div class="text-center bg-gray-700  text-white">
+                    <p class="border py-3">TOTAL OLT</p>
+                    <div class="py-3 border-b">
+                        <p>{{ totaloltcrb_sum }}</p>
+                    </div>
+                </div>
+                <div class="text-center bg-gray-700  text-white">
+                    <p class="py-3 border-b">TOTAL PORT</p>
+                    <div class="py-3 border-b">
+                        <p>{{ totalportcrb_sum }}</p>
+                    </div>
+                </div>
+                <div class="text-center bg-gray-700  text-white">
+                    <p class="py-3 border-b">IDLE PORT</p>
+                    <div class="py-4 ">
+                        <p>{{ idleportcrb_sum }}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="md:h-96 h-72  w-full bg-gray-700 rounded shadow-lg md:col-span-3 col-span-1 md:-mt-16" id="dgrmassets2"></div>
+        <div class="h-full w-full bg-gray-700 rounded shadow-lg md:col-span-2 col-span-1 justify-between flex">
+            <div class=" bg-gray-400  w-full" id="tasik"></div>
+            <div class=" w-40 text-sm">
+                <div class="text-center py-2 bg-gray-900  rounded shadow-lg-t text-white">
+                    <p>TASIK</p>
+                </div>
+                <div class="text-center bg-gray-700  text-white">
+                    <p class="border py-3">TOTAL OLT</p>
+                    <div class="py-3 border-b">
+                        <p>{{ totalolttsk_sum }}</p>
+                    </div>
+                </div>
+                <div class="text-center  bg-gray-700  text-white">
+                    <p class="border-b py-3">TOTAL PORT</p>
+                    <div class="py-3 border-b">
+                        <p>{{ totalporttsk_sum }}</p>
+                    </div>
+                </div>
+                <div class="text-center  bg-gray-700  text-white">
+                    <p class="py-3 border-b">IDLE PORT</p>
+                    <div class="py-4">
+                        <p>{{ idleporttsk_sum }}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="grid md:grid-cols-4 grid-cols-1 gap-1">
+        <div class="h-72 w-full bg-gray-100 rounded shadow-lg" id="rtk1"></div>
+        <div class="h-72 w-full bg-gray-100 rounded shadow-lg" id="turcb1"></div>
+        <div class="h-72 w-full bg-gray-100 rounded shadow-lg" id="turcb2"></div>
+        <div class="h-72 w-full bg-gray-100 rounded shadow-lg" id="turcb3"></div>
+        <div class="h-72 w-full bg-gray-100 rounded shadow-lg" id="rtk2"></div>
+        <div class="h-72 w-full bg-gray-100 rounded shadow-lg" id="rtk4"></div>
+        <div class="h-72 w-full bg-gray-100 md:col-span-2 col-span-1 rounded shadow-lg" id="invest"></div>
+    </div>
+</div>
+{% endblock %}

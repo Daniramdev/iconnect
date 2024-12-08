@@ -1,0 +1,45 @@
+{% extends "layout/register.html" %} {% block header %} {% block title %}login{% endblock %} {% endblock %} {% block content %}
+<div class="grid grid-cols-1 md:grid-cols-2 h-screen bg-gray-200">
+    <div>
+        <img src="/static/images/logo/IMG-20230720-WA0003.jpg" class="hidden sm:block h-[38rem]" alt="">
+    </div>
+    <div class="justify-center items-center flex">
+        <div class="pt-5 max-w-sm w-full md:w-[50%] pb-8 bg-white shadow-inner rounded-lg">
+            <div class="px-10">
+                <h2 class="text-2xl font-bold mb-3 text-center text-gray-500 mt-3">Register</h2>
+                {% if error %}
+                <p class="text-red-500 text-xs">{{ error }}</p>
+                {% endif %}
+                <form method="POST" action="/register">
+                    <div class="mb-4">
+                        <label class="block text-gray-500 text-sm font-semibold mb-2">Username</label>
+                        <input type="text" name="username" class="w-full border border-gray-300 rounded py-2 px-4 text-xs" placeholder="Username" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-500 text-sm font-semibold mb-2">Email</label>
+                        <input type="email" name="email" class="w-full border border-gray-300 rounded py-2 px-4 text-xs" placeholder="Email" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="block text-gray-500 text-sm font-semibold mb-2">Password</label>
+                        <input type="password" name="password" class="w-full border border-gray-300 rounded py-2 px-4 text-xs" placeholder="Password" minlength="2" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="confirm_password" class="block text-gray-500 text-sm font-semibold mb-2">Confirm Password</label>
+                        <input type="password" name="confirm_password" class="w-full border border-gray-300 rounded py-2 px-4 text-xs" placeholder="Confirm Password" minlength="2" required>
+                    </div>
+                    <div class="text-xs">
+                        <input type="checkbox" id="showPassword"> Show Password
+                    </div>
+                    <button class="w-full mb-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded" type="submit">Register</button>
+                </form>
+                <div class="text-center">
+                    <button class="text-gray-400 text-xs">Back to login page
+                            Click <a href="{{ url_for('login') }}"
+                                class="hover:text-blue-600 text-blue-500 text-sm">Login</a>
+                        </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

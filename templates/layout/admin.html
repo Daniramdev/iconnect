@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/dist/css/output.css">
+    <link rel="icon" href="/static/images/logo/Icon.png" type="image/x-icon" class="h-4 w-10">
+    <link flex href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/map.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.3/css/boxicons.min.css">
+
+
+    <style>
+        /* WebKit scrollbar width */
+        
+        .overflow-x-auto::-webkit-scrollbar,
+        .overflow-y-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        /* WebKit scrollbar track color */
+        
+        .overflow-x-auto::-webkit-scrollbar-track,
+        .overflow-y-scroll::-webkit-scrollbar-track {
+            background-color: #f1f1f1;
+            /* Adjust the color as needed */
+        }
+        /* WebKit scrollbar thumb color */
+        
+        .overflow-x-auto:-webkit-scrollbar-thumb,
+        .overflow-y-scroll::-webkit-scrollbar-thumb {
+            background-color: #888;
+            /* Adjust the color as needed */
+        }
+        /* WebKit scrollbar thumb color on hover */
+        
+        .overflow-x-auto::-webkit-scrollbar-thumb:hover,
+        .overflow-y-scroll::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+            /* Adjust the color as needed */
+        }
+    </style>
+
+</head>
+
+<body class="font-poppins">
+    <nav class="bg-white p-3 fixed w-full z-50 shadow-lg px-10">
+        <div class="flex items-center justify-between">
+            <div class="ml-8 p-1 py-1 font-semibold text-gray-500">
+                <p class="text-black text-sm">Welcome, {{ session["username"] }}!</p>
+                <a class="text-xs" href="#data1">{{ session.role }}</a>
+            </div>
+            <!-- Logo -->
+            <div class="justify-center flex gap-4 px-1">
+                <div class="relative md:block hidden text-xs">
+                    <input type="text" id="searchInput" placeholder="Search" class="border border-gray-300 p-2 rounded-md focus:outline-none focus:border-blue-500">
+                    <button id="searchButton" class="absolute right-0 top-0 mt-2 mr-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4 text-gray-600">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a4 4 0 1 0-8 0 4 4 0 0 0 8 0zM21 21l-4.35-4.35"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="text-2xl">
+                    <img src="/static/images/logo/logo-pln-Icon.png" class="h-8 hidden md:block" alt="logo">
+                </div>
+                <div class="profile-btn relative group z-50 text-sm">
+                    <div class="flex items-center space-x-2 cursor-pointer group-hover:underline">
+                        <img src="/static/images/logo/iconperson.png" alt="Avatar" class="h-6 rounded shadow-lg-full">
+                    </div>
+                    <ul class="py-2 bg-white shadow-4xl border-2 border-gray-300 shadow-gray-200 rounded shadow-lg-lg mt-1 absolute right-0 hidden w-32">
+                        <li class="hover:bg-gray-100 px-4 py-2 cursor-pointer text-xs border-b">
+                            <a href="#data1">{{ session.role }}</a>
+                        </li>
+                        <li class="hover:bg-gray-100 px-4 py-2 cursor-pointer">
+                            <a href="#data2"><i class="bx bx-user"></i> Profile</a>
+                        </li>
+
+                        <li class="hover:bg-gray-100 px-4 py-2 cursor-pointer">
+                            <a href="{{url_for('logout')}}"><i class="bx bx-log-out"></i> logout</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- Akhir Profile Dropdown -->
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex text-sm font-Poppins">
+        <aside id="sidebar" class="bg-white sidebar min-h-screen fixed z-50">
+            <div class="justify-between flex">
+                <div id="logo" class="p-5 hidden">
+                    <img src="/static/images/logo/Iconect.png" alt="Logo" />
+                </div>
+                <a href="javascript:void(0);" onclick="toggleSidebar()">
+                    <div class="px-5 py-6">
+                        <i class="bx bx-menu z-50"></i>
+                    </div>
+                </a>
+            </div>
+            <ul class="menu px-1 text-xs font-bold">
+                <li class="px-5 py-2  hover:bg-gray-200">
+                    <a href="{{url_for('dashboard')}}">
+                        <i class="bx bx-home"></i>
+                        <span class="menu-text hidden">Home</span>
+                    </a>
+                </li>
+                <li class="px-5 py-2  hover:bg-gray-200" onclick="toggleDashboardMenu()">
+                    <a href="javascript:void(0);" class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <a href="javascript:void(0)">
+                                <i class="bx bxs-dashboard"></i>
+                                <span class="menu-text hidden">Dashboard</span>
+                                <div>
+                                    <i class="bx bx-chevron-down hidden" id="dashboardMenuIcon"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </a>
+                    <ul id="dashboardSubMenu" class="ml-4 hidden" style="width: 150px; right: 50px;">
+                        <li class="py-2   px-1 hover:bg-gray-400 rounded">
+                            <a href="{{url_for('assets')}}">
+                                <i class="bx bx-bar-chart-square"></i>
+                                <span class="menu-text hidden w-full rounded ">Dashborad Assets</span>
+                            </a>
+                        </li>
+                        <li class="py-2   px-1 hover:bg-gray-400 rounded">
+                            <a href="{{url_for('dashboard')}}">
+                                <i class="bx bx-bar-chart-square"></i>
+                                <span class="menu-text hidden w-full rounded ">Dashborad Retail</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="px-5 py-2 hover:bg-gray-200" onclick="toggleDashboardManage()">
+                    <a href="javascript:void(0);" class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <a href="javascript:void(0)">
+                                <i class="bx bx-book"></i>
+                                <span class="menu-text hidden">Management</span>
+                                <div>
+                                    <i class="bx bx-chevron-down hidden" id="dashboardMenuIcon"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </a>
+                    <ul id="dashboardmanage" class="ml-4 hidden" style="width: 150px; right: 50px;">
+                        <li class="py-2   hover:bg-gray-400 rounded px-1 ">
+                            <a href="{{ url_for('ikr' ) }}">
+                                <i class="bx bx-folder-open"></i>
+                                <span class="menu-text hidden  rounded px-1">Data IKR</span>
+                            </a>
+                        </li>
+                        <li class="py-2   hover:bg-gray-400 rounded px-1 ">
+                            <a href="{{ url_for('datamap' ) }}">
+                                <i class="bx bx-folder-open"></i>
+                                <span class="menu-text hidden  rounded px-1">Data Map TUR</span>
+                            </a>
+                        </li>
+                        <li class="py-2 hover:bg-gray-400 rounded px-1">
+                            <a href="{{url_for('tb_retail')}}">
+                                <i class="bx bx-folder-open"></i>
+                                <span class="menu-text hidden px-1">Data Retail</span>
+                            </a>
+                        </li>
+                        <li class="py-2   hover:bg-gray-400 rounded px-1 ">
+                            <a href="{{url_for('tb_dashboardutama')}}">
+                                <i class="bx bx-folder-open"></i>
+                                <span class="menu-text hidden  rounded px-1">Data Pivot</span>
+                            </a>
+                        </li>
+                        <li class="py-2 hover:bg-gray-400 rounded px-1">
+                            <a href="{{url_for('userlist')}}">
+                                <i class="bx bx-folder-open"></i>
+                                <span class="menu-text hidden px-1">Data User</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="px-5 py-2 hover:bg-gray-200" onclick="toggleDashboardMap()">
+                    <a href="javascript:void(0);" class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <a href="javascript:void(0)">
+                                <i class="bx bx-book"></i>
+                                <span class="menu-text hidden">IKR</span>
+                                <div>
+                                    <i class="bx bx-chevron-down hidden" id="dashboardMenuIcon"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </a>
+                    <ul id="dashboardmap" class="ml-4 hidden" style="width: 150px; right: 50px;">
+                        <li class="py-2   hover:bg-gray-400 rounded px-1 ">
+                            <a href="{{ url_for('mapikradmin' ) }}">
+                                <i class="bx bx-folder-open"></i>
+                                <span class="menu-text hidden  rounded px-1">Map Tur</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class="px-5 py-2 hover:bg-gray-200">
+                    <a href="{{ url_for('statistik' ) }}">
+                        <i class="bx bx-line-chart"></i>
+                        <span class="menu-text hidden">Statistik</span>
+                    </a>
+                </li>
+                <li class="px-5 py-2  hover:bg-gray-200">
+                    <a href="{{url_for('preesale')}}">
+                        <i class="bx bx-purchase-tag"></i>
+                        <span class="menu-text hidden">Preesale</span>
+                    </a>
+                </li>
+                <li class="px-5 py-2  hover:bg-gray-200">
+                    <a href="{{url_for('gangguan')}}">
+                        <i class="bx bx-wifi-off"></i>
+                        <span class="menu-text hidden">Gangguan</span>
+                    </a>
+                </li>
+
+            </ul>
+            <!-- Additional Sidebar item with tooltip -->
+        </aside>
+    </div>
+    <div class=" mt-16 ml-14 px-2 p-4 min-h-screen ">
+        {% block content %} {% endblock %}
+
+    </div>
+
+    <footer class="bg-white text-black font-semibold text-center py-4 shadow-lg w-full">
+        <p class="text-sm">&copy; 2024 Iconnet. All rights reserved.</p>
+    </footer>
+    <script src="/static/js/dashboard/main.js"></script>
+    <script src="/static/js/dashboardsales/diagramhoriz1.js"></script>
+    <script src="/static/js/dashboardsales/diagramhoriz2.js"></script>
+    <script src="/static/js/dashboardsales/diagram.js"></script>
+    <script src="/static/js/dashboardsales/revaccum.js"></script>
+
+    <script src="/static/js/dashboardsales/Userbandwhidth.js"></script>
+    <script src="/static/js/dashboardsales/Bandung/revdailybdg.js"></script>
+    <script src="/static/js/dashboardsales/Bandung/revaacumbdg.js"></script>
+
+    <script src="/static/js/dashboardsales/Cirebon/revaacumcrb.js"></script>
+    <script src="/static/js/dashboardsales/Cirebon/revdailycrb.js"></script>
+    <script src="/static/js/dashboardsales/Cirebon/revaacumcrb.js"></script>
+
+
+    <script src="/static/js/dashboardsales/Tasikmalaya/revaacumcrb.js"></script>
+    <script src="/static/js/dashboardsales/Tasikmalaya/revdailycrb.js"></script>
+
+    <script src="/static/js/diagram/akumulasi.js"></script>
+    <script src="/static/js/diagram/hcvsspa.js"></script>
+    <script src="/static/js/diagram/oavshc.js"></script>
+    <script src="/static/js/totaldougnutbdg.js"></script>
+    <script src="/static/js/dough.js"></script>
+
+    <script src="/static/js/diagram/BandungHC/dailyhc.js"></script>
+    <script src="/static/js/diagram/BandungHC/monthlyhc.js"></script>
+    <script src="/static/js/diagram/BandungHC/accumhc.js"></script>
+    <script src="/static/js/diagram/BandungHC/monthlyaging.js"></script>
+
+    <script src="/static/js/diagram/CirebonHC/dailyhccrb.js"></script>
+    <script src="/static/js/diagram/CirebonHC/monthlyhccrb.js"></script>
+    <script src="/static/js/diagram/CirebonHC/accumhccrb.js"></script>
+    <script src="/static/js/diagram/CirebonHC/monthlyagingcrb.js"></script>
+
+    <script src="/static/js/diagram/monthlyagingakv.js"></script>
+
+
+    <script src="/static/js/diagram/TasikmalayaHC/dailyhctsk.js"></script>
+    <script src="/static/js/diagram/TasikmalayaHC/monthlyhctsk.js"></script>
+    <script src="/static/js/diagram/TasikmalayaHC/accumhctsk.js"></script>
+    <script src="/static/js/diagram/TasikmalayaHC/monthlyagingtsk.js"></script>
+
+
+    <script src="/static/js/dashboard_assets/dgrmassets1.js"></script>
+    <script src="/static/js/dashboard_assets/dgrmassets2.js"></script>
+    <script src="/static/js/dashboard_assets/dgrmbandung.js"></script>
+    <script src="/static/js/dashboard_assets/dgrmcirebon.js"></script>
+    <script src="/static/js/dashboard_assets/dgrmtasik.js"></script>
+    <script src="/static/js/dashboard_assets/invest.js"></script>
+    <script src="/static/js/dashboard_assets/turcb1.js"></script>
+    <script src="/static/js/dashboard_assets/turcb2.js"></script>
+    <script src="/static/js/dashboard_assets/turcb3.js"></script>
+    <script src="/static/js/dashboard_assets/turtk1.js"></script>
+    <script src="/static/js/dashboard_assets/turtk2.js"></script>
+    <script src="/static/js/dashboard_assets/turtk4.js"></script>
+
+
+
+    <script src="/static/js/diagram/akumulasi.js"></script>
+    <script src="/static/js/diagram/hcvsspa.js"></script>
+    <script src="/static/js/diagram/oavshc.js"></script>
+    <script src="/static/js/totaldougnutbdg.js"></script>
+    <script src="/static/js/dough.js"></script>
+
+    <script src="/static/js/diagram/BandungHC/dailyhc.js"></script>
+    <script src="/static/js/diagram/BandungHC/monthlyhc.js"></script>
+    <script src="/static/js/diagram/BandungHC/accumhc.js"></script>
+    <script src="/static/js/diagram/BandungHC/monthlyaging.js"></script>
+
+    <script src="/static/js/diagram/CirebonHC/dailyhccrb.js"></script>
+    <script src="/static/js/diagram/CirebonHC/monthlyhccrb.js"></script>
+    <script src="/static/js/diagram/CirebonHC/accumhccrb.js"></script>
+    <script src="/static/js/diagram/CirebonHC/monthlyagingcrb.js"></script>
+
+    <script src="/static/js/diagram/monthlyagingakv.js"></script>
+
+
+    <script src="/static/js/diagram/TasikmalayaHC/dailyhctsk.js"></script>
+    <script src="/static/js/diagram/TasikmalayaHC/monthlyhctsk.js"></script>
+    <script src="/static/js/diagram/TasikmalayaHC/accumhctsk.js"></script>
+    <script src="/static/js/diagram/TasikmalayaHC/monthlyagingtsk.js"></script>
+
+
+</body>
+
+</html>

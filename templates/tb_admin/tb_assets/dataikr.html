@@ -1,0 +1,285 @@
+ {% extends "layout/managedata.html" %} {% block header %} {% block title %}Data Assets Spbu Jabar{% endblock %} {% endblock %} {% block content %}
+<!-- Konten yang sudah ada -->
+<div id="main">
+    <div class="px-4">
+        <h1 class="md:text-xl text-sm font-bold mt-2 mb-2">DATA ASSET SPBU JAWA BARAT</h1>
+        <h2 class="text-sm font-bold mt-2 mb-2">Data_OLT</h2>
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <ul class="flash-messages">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %} {% endwith %}
+        <div class="container mx-auto items-center flex text-xs mb-2">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div class=" items-center flex-col">
+                    <div class="items-center  flex gap-3">
+                        <form action="/import" method="post" enctype="multipart/form-data">
+                            <input type="file" name="file" accept=".xls, .xlsx">
+                            <button type="submit" class="bg-blue-500 py-2 px-2 rounded hover:bg-blue-600 text-white">Import</button>
+                        </form>
+                        <form action="/export" method="get">
+                            <button type="submit" class="bg-green-500 py-2 px-2 rounded hover:bg-green-600 text-white">Export</button>
+                        </form>
+                    </div>
+                </div>
+                <form action="/process_option" method="POST">
+                    <div class="items-center flex text-xs mb-2">
+                        <select id="dataOption" name="option" class="px-2 py-2 border bg-white">
+                                    <option value="ikr">Data IKR</option>
+                                    <option value="tb_retail">Data Retail</option>
+                                    </select>
+                        <input class="bg-gray-500 text-white hover:bg-slate-400 py-2 rounded-r px-2" type="submit" value="Submit">
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div id="optionPages" class="w-full mx-auto mt-4 ">
+            <div id="pageOption1" class="bg-white border  p-4 rounded-md shadow-md" style="display: none;">
+                <div class="overflow-x-auto text-xs">
+                    <table id="dataTablePage1" class="table-auto w-full bg-gray-300 rounded-t">
+                        <thead>
+                            <tr>
+                                <th class="border  px-4 py-2">Hostname</th>
+                                <th class="border  px-4 py-2">Pop</th>
+                                <th class="border  px-4 py-2">Area</th>
+                                <th class="border  px-4 py-2">Kota</th>
+                                <th class="border  px-4 py-2">Kecamatan</th>
+                                <th class="border  px-4 py-2">Kelurahan</th>
+                                <th class="border  px-4 py-2">UP3</th>
+                                <th class="border  px-4 py-2">ULP</th>
+                                <th class="border  px-4 py-2">Asal OLT</th>
+                                <th class="border  px-4 py-2">Jenis OLT</th>
+                                <th class="px-4 py-2">Action</th>
+
+                                <!-- Add more columns as needed -->
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for ikr in ikr %}
+                            <tr>
+                                <td class="border  px-4 py-2">{{ ikr['hostname'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['pop'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['area'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['kota'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['kecamatan'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['kelurahan'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['up3'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['ulp'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['asal_olt'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['jenis_olt'] }}</td>
+                                <td class="py-2 px-4 border-b">
+                                    <form method="post" action="{{ url_for('delete_ikr', id=ikr.id) }}" onsubmit="return confirm('Are you sure you want to delete this acum?')">
+                                        <button type="submit" class="text-red-500 hover:text-red-700">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="mt-4">
+                        <!-- Option to delete all data -->
+                        <form method="post" action="{{ url_for('delete_all_ikr') }}" onsubmit="return confirm('Are you sure you want to delete all data?')">
+                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Delete All Data</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <div id="pageOption2" class="bg-white border border-gray-400 p-4 rounded-md shadow-md" style="display: none;">
+                <div class="overflow-x-auto">
+                    <table id="dataTablePage2" class="table-auto w-full bg-gray-300 rounded-t">
+                        <thead>
+                            <tr>
+                                <th class="border  px-4 py-2">Brand OLT</th>
+                                <th class="border  px-4 py-2">Type</th>
+                                <th class="border  px-4 py-2">Kapasitas</th>
+                                <th class="border  px-4 py-2">Port Idle</th>
+                                <th class="border  px-4 py-2">Homepass</th>
+                                <th class="border  px-4 py-2">Home Connected</th>
+                                <th class="border  px-4 py-2">Utilitas</th>
+                                <th class="border  px-4 py-2">Instalation OLT</th>
+                                <th class="border  px-4 py-2">Jumlah Port OLT</th>
+                                <th class="border  px-4 py-2">NMS OLT</th>
+                                <th class="px-4 py-2">Action</th>
+
+                                <!-- Add more columns as needed -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ikr in ikr %}
+                            <tr>
+
+                                <td class="border  px-4 py-2">{{ ikr['brand_olt'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['type'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['kapasitas'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['port_idle'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['homepass'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['home_connected'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['utilitas'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['instalation_olt'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['jumlah_port_olt'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['nms_olt'] }}</td>
+
+                                <td class="py-2 px-4 border-b">
+                                    <form method="post" action="#" onsubmit="return confirm('Are you sure you want to delete this row?')">
+                                        <button type="submit" class="text-red-500 hover:text-red-700">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="mt-4">
+                        <!-- Option to delete all data -->
+                        <form method="post" action="" onsubmit="return confirm('Are you sure you want to delete all data?')">
+                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Delete All Data</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="pageOption3" class="bg-white border  p-4 rounded-md shadow-md" style="display: none;">
+                <div class="overflow-x-auto">
+                    <table id="dataTablePage3" class="table-auto w-full bg-gray-300 rounded-t">
+                        <thead>
+                            <tr>
+                                <th class="border  px-4 py-2">L3 Switch</th>
+                                <th class="border  px-4 py-2">Status OLT</th>
+                                <th class="border  px-4 py-2">Aging</th>
+                                <th class="border  px-4 py-2">Kategori Cluster</th>
+                                <th class="border  px-4 py-2">Kategori Aging</th>
+                                <th class="border  px-4 py-2">Kategori Tur</th>
+                                <th class="border  px-4 py-2">Idle HP</th>
+                                <th class="border  px-4 py-2">Jumlah Port Terpakai</th>
+                                <th class="border  px-4 py-2">Koordinat</th>
+
+                                <th class="px-4 py-2">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ikr in ikr %}
+                            <tr>
+                                <td class="border  px-4 py-2">{{ ikr['l3_switch'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['status_olt'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['aging'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['kategori_cluster'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['kategori_aging'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['kategori_tur'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['idle_hp'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['jumlah_port_terpakai'] }}</td>
+                                <td class="border  px-4 py-2">{{ ikr['koordinat'] }}</td>
+
+                                <td class="py-2 px-4 border-b">
+                                    <form method="post" action="#" onsubmit="return confirm('Are you sure you want to delete this row?')">
+                                        <button type="submit" class="text-red-500 hover:text-red-700">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="mt-4">
+                        <!-- Option to delete all data -->
+                        <form method="post" action="" onsubmit="return confirm('Are you sure you want to delete all data?')">
+                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Delete All Data</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mx-auto">
+            <div class="flex justify-end w-full bg-white">
+                <button id="prevPage" class="bg-white px-2 hover:bg-gray-400 rounded"><i class='bx bx-chevron-left'></i> Previous
+                </button>
+                <div id="pageInfo" class="p-2 text-center bg-white">Page <span id="currentPage">1</span> / <span id="totalPages">4</span></div>
+                <button id="nextPage" class="bg-white px-3 hover:bg-gray-400 rounded ">Next <i class='bx bx-chevron-right'></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function toggleDropdown(dropdownId) {
+        var dropdown = document.getElementById(dropdownId);
+
+        // Check if the dropdown is currently visible
+        var isVisible = dropdown.style.display === 'block';
+
+        // Hide all dropdowns
+        var allDropdowns = document.getElementsByClassName('dropdown-content');
+        for (var i = 0; i < allDropdowns.length; i++) {
+            allDropdowns[i].style.display = 'none';
+        }
+
+        // Toggle the selected dropdown based on its current visibility
+        dropdown.style.display = isVisible ? 'none' : 'block';
+    }
+
+    function closeNav() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
+
+    function openNav() {
+        document.getElementById("mySidebar").style.width = "200px";
+        document.getElementById("main").style.marginLeft = "200px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+    }
+    $(document).ready(function() {
+        $('#dataTablePage1').DataTable({
+            responsive: true,
+            searching: true,
+            paging: true,
+            lengthMenu: [10, 20, 50, 100],
+            pageLength: 10,
+        });
+        $('#dataTablePage2').DataTable();
+        $('#dataTablePage3').DataTable();
+        $('#dataTablePage4').DataTable();
+        $('#dataTablePage5').DataTable();
+
+    });
+    let currentPage = 1;
+    const totalPages = 3; // Assuming there are 4 pages
+
+    function showPage(pageNumber) {
+        const allPages = $("#optionPages > div");
+        allPages.hide();
+
+        const selectedPage = $(`#pageOption${pageNumber}`);
+        if (selectedPage.length) {
+            selectedPage.show();
+        }
+
+        // Update page info
+        $("#currentPage").text(pageNumber);
+    }
+
+    $("#prevPage").on("click", function() {
+        if (currentPage > 1) {
+            currentPage--;
+            showPage(currentPage);
+        }
+    });
+
+    $("#nextPage").on("click", function() {
+        if (currentPage < totalPages) {
+            currentPage++;
+            showPage(currentPage);
+        }
+    });
+
+    // Initial page display
+    showPage(currentPage);
+    $("#totalPages").text(totalPages);
+</script>
+{% endblock %}

@@ -1,0 +1,10 @@
+<svg id="Layer_1" data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 920 734">
+    <defs>
+        <style>.cls-1{isolation:isolate;}</style>
+    </defs>
+    <image id="tasik" class="cls-1" width="514" height="344" transform="translate(390 390)" xlink:href="31.png"/>
+    <image id="cirebon" class="cls-1" width="406" height="372" transform="translate(514 114)" xlink:href="32.png"/>
+    <image id="bandung" class="cls-1" width="582" height="610" xlink:href="33.png"/>
+</svg>

@@ -1,0 +1,105 @@
+ {% extends 'layout/admin.html' %} {% block title %}User Management{% endblock %} {% block content %}
+<div class="text-xs max-w-md">
+    <h1 class="text-xl font-bold mb-4">User Management</h1>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <div class="my-4">
+        {% for message in messages %}
+        <div class="bg-green-500 text-white p-2 rounded-md">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %} {% endwith %}
+    <div class="">
+        <form action="{{ url_for('search') }}" method="get" class="mb-4 items-center flex">
+            <input type="text" id="searchQuery" name="q" class="p-2 w-full border" placeholder="Enter keyword">
+            <button type="submit" class=" bg-blue-500 p-2 text-white hover:bg-blue-600 rounded-r">Search</button>
+        </form>
+    </div>
+    <div class="overflow-x-auto shadow-lg rounded">
+        <table class=" md:max-w-md w-full max-h-80 h-full overflow-hidden overflow-x-scroll shadow-md text-sm">
+            <thead class="bg-gray-400 text-white rounded ">
+                <tr>
+                    <th class="py-2 px-4">Nama</th>
+                    <th class="py-2 px-4">Email</th>
+                    <th class="py-2 px-4">Role</th>
+                    <th class="py-2 px-4">Action</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white rounded-t">
+                {% for user in user %}
+                <tr class="text-center">
+                    <td class="py-2 px-4 border">{{ user.username }}</td>
+                    <td class="py-2 px-4 border">{{ user.email }}</td>
+                    <td class="py-2 px-4 border">{{ user.role }}</td>
+                    <td class="py-2 px-4 border">
+                        <form action="{{ url_for('delete_user', user_id=user.id) }}" method="post" style="display: inline;">
+                            <button type="submit" class="text-black rounded-md" onclick="return confirm('Apakah Anda yakin ingin menghapus user ini?')">
+                                <i class='bx bx-trash'></i>
+                            </button>
+                        </form>
+                        <button type="button" class="text-blue-500 rounded-md edit-button" data-user-id="{{ user.id }}">
+                            <i class='bx bx-edit'></i>
+                        </button>
+                    </td>
+                </tr>
+                <!-- Edit Form Section -->
+                <tr id="editFormRow{{ user.id }}" class="hidden">
+                    <td colspan="4">
+                        <form action="{{ url_for('edit_user', user_id=user.id) }}" method="post">
+                            <div class="mb-4  px-4 rounded">
+                                <label for="username" class="block text-sm font-medium text-gray-600 mr-2">Nama:</label>
+                                <input type="text" id="username" name="username" class="mt-1 p-2 border w-full mr-2" value="{{ user.username }}" required>
+                            </div>
+
+                            <div class="mb-4  px-4 ">
+                                <label for="email" class="block text-sm font-medium text-gray-600 mr-2">Email:</label>
+                                <input type="email" id="email" name="email" class="mt-1 p-2 border w-full mr-2" value="{{ user.email }}" required>
+                            </div>
+
+                            <div class="mb-4  px-4 rounded">
+                                <label for="role" class="block text-sm font-medium text-gray-600 mr-2">Role:</label>
+                                <input type="text" id="role" name="role" class="mt-1 p-2 border w-full mr-2" value="{{ user.role }}" required>
+                            </div>
+
+                            <div class="mb-4 px-4 rounded">
+                                <label for="password" class="block text-sm font-medium text-gray-600 mr-2">Password:</label>
+                                <input type="password" id="password" name="password" class="mt-1 p-2 border w-full" required>
+                            </div>
+
+                            <div class="flex justify-end  px-4 rounded">
+                                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md text-xs hover:bg-blue-600">Update Data</button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Function to toggle the visibility of the edit form
+        function toggleEditForm(user_id) {
+            var editFormRow = document.getElementById("editFormRow" + user_id);
+            if (editFormRow) {
+                editFormRow.classList.toggle("hidden");
+            }
+        }
+
+        // Attach click event handlers to the edit buttons
+        var editButtons = document.querySelectorAll(".edit-button");
+        editButtons.forEach(function(button) {
+            button.addEventListener("click", function(event) {
+                event.preventDefault();
+                var user_id = button.getAttribute("data-user-id");
+                toggleEditForm(user_id);
+            });
+        });
+    });
+</script>
+
+
+{% endblock %}

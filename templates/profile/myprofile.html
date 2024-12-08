@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Tambahkan gaya kustom CSS di sini */
+        /* Contoh: .profile-header { background-color: #3498db; color: #fff; } */
+        /* Contoh: .profile-avatar { border: 2px solid #fff; } */
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <div class="container mx-auto p-8">
+        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <!-- Header Profil -->
+            <div class="bg-gray-200 p-4">
+                <h1 class="text-2xl font-semibold text-gray-800">My Profile</h1>
+            </div>
+            <!-- Avatar dan Nama Pengguna -->
+            <div class="p-4 flex items-center">
+                <img src="{{ user.profile_picture }}" alt="Profile Picture" class="w-16 h-16 rounded-full mr-4"
+                    id="profile-picture">
+                <div>
+                    <h2 class="text-lg font-semibold text-gray-800">{{ user.username }}</h2>
+                    <p class="text-sm text-gray-600">{{ user.email }}</p>
+                </div>
+            </div>
+            <!-- Tombol Unggah Foto -->
+            <div class="p-4">
+                <input type="file" id="upload-input" accept="image/*" style="display: none;">
+                <button id="upload-button" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Upload
+                    Photo</button>
+            </div>
+            <!-- Informasi Tambahan -->
+            <div class="p-4">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Additional Information</h3>
+                <p class="text-gray-600">{{ user.bio }}</p>
+            </div>
+            <!-- Tombol Edit Profil -->
+            <div class="p-4 text-right">
+                <a href="/edit-profile" class="text-blue-500 hover:underline">Edit Profile</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk mengambil foto saat input berubah
+        document.getElementById('upload-input').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('profile-picture').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Fungsi untuk memicu input file saat tombol di klik
+        document.getElementById('upload-button').addEventListener('click', function () {
+            document.getElementById('upload-input').click();
+        });
+    </script>
+</body>
+
+</html>

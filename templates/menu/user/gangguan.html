@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/dist/css/output.css">
+    <link rel="icon" href="/static/images/logo/Icon.png" type="image/x-icon" class="h-4 w-10">
+    <link flex href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/map.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.3/css/boxicons.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        /* WebKit scrollbar width */
+        
+        .overflow-x-scroll::-webkit-scrollbar,
+        .overflow-y-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        /* WebKit scrollbar track color */
+        
+        .overflow-x-scroll::-webkit-scrollbar-track,
+        .overflow-y-scroll::-webkit-scrollbar-track {
+            background-color: #f1f1f1;
+            /* Adjust the color as needed */
+        }
+        /* WebKit scrollbar thumb color */
+        
+        .overflow-x-scroll::-webkit-scrollbar-thumb,
+        .overflow-y-scroll::-webkit-scrollbar-thumb {
+            background-color: #888;
+            /* Adjust the color as needed */
+        }
+        /* WebKit scrollbar thumb color on hover */
+        
+        .overflow-x-scroll::-webkit-scrollbar-thumb:hover,
+        .overflow-y-scroll::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+            /* Adjust the color as needed */
+        }
+    </style>
+</head>
+
+<body class="font-poppins">
+    <nav class="bg-white p-3 fixed w-full z-50 shadow-lg px-10 top-0">
+        <div class="flex items-center justify-between">
+            <div class="ml-8 p-1 py-1 font-semibold text-gray-500">
+                <p class="text-black text-sm">Welcome, {{ session["username"] }}!</p>
+                <a class="text-xs" href="#data1">{{ session.role }}</a>
+            </div>
+            <!-- Logo -->
+
+            <!-- Profile Dropdown -->
+            <div class="profile-btn relative group z-50 text-sm top-0">
+                <div class="justify-center flex gap-4 px-1">
+                    <div class="text-2xl">
+                        <img src="/static/images/logo/logo-pln-Icon.png" class="h-8 hidden md:block" alt="logo">
+                    </div>
+                    <div class="flex items-center space-x-2 cursor-pointer group-hover:underline">
+                        <img src="url_gambar_avatar_anda" alt="Avatar" class="w-8 h-8 rounded shadow-lg-full">
+                    </div>
+                </div>
+                <ul class="py-2 bg-gray-400 rounded shadow-lg-lg mt-1 absolute right-0 hidden w-32">
+                    <li class="hover:bg-gray-100 px-4 py-2 cursor-pointer text-xs border-b">
+                        <a href="#data1">{{ session.role }}</a>
+                    </li>
+                    <li class="hover:bg-gray-100 px-4 py-2 cursor-pointer">
+                        <a href="#data2"><i class="bx bx-user"></i> Profile</a>
+                    </li>
+
+                    <li class="hover:bg-gray-100 px-4 py-2 cursor-pointer">
+                        <a href="{{url_for('logout')}}"><i class="bx bx-log-out"></i> logout</a>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- Akhir Profile Dropdown -->
+        </div>
+        </div>
+    </nav>
+
+
+    <div class=" mt-16 ml-14 px-2 p-4 min-h-screen bg-gray-100">
+        <div class="grid md:grid-cols-2 grid-cols-1">
+            <div class="h-72 w-72 shadow" id="linev">
+            </div>
+            <div class="h-72 w-72 shadow" id="pie">
+            </div>
+            <div class="h-72 w-72 shadow" id="tot">
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="bg-white text-black font-semibold text-center py-4 shadow-lg">
+        <p class="text-sm">&copy; 2023 Iconnet. All rights reserved.</p>
+    </footer>
+    <script src="/static/js/diagram experiment/py.js"></script>
+    <script src="/static/js/diagram experiment/line.js"></script>
+    <script src="/static/js/diagram experiment/tot.js"></script>
+
+
+    <script src="/static/js/dashboard/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="/static/js/dashboardsales/diagramhoriz1.js"></script>
+    <script src="/static/js/dashboardsales/diagramhoriz2.js"></script>
+    <script src="/static/js/dashboardsales/diagram.js"></script>
+    <script src="/static/js/dashboardsales/revaccum.js"></script>
+
+    <script src="/static/js/dashboardsales/Userbandwhidth.js"></script>
+    <script src="/static/js/dashboardsales/Bandung/revdailybdg.js"></script>
+    <script src="/static/js/dashboardsales/Bandung/revaacumbdg.js"></script>
+
+    <script src="/static/js/dashboardsales/Cirebon/revaacumcrb.js"></script>
+    <script src="/static/js/dashboardsales/Cirebon/revdailycrb.js"></script>
+    <script src="/static/js/dashboardsales/Cirebon/revaacumcrb.js"></script>
+
+
+    <script src="/static/js/dashboardsales/Tasikmalaya/revaacumcrb.js"></script>
+    <script src="/static/js/dashboardsales/Tasikmalaya/revdailycrb.js"></script>
+
+    <script src="/static/js/diagram/akumulasi.js"></script>
+    <script src="/static/js/diagram/hcvsspa.js"></script>
+    <script src="/static/js/diagram/oavshc.js"></script>
+    <script src="/static/js/totaldougnutbdg.js"></script>
+    <script src="/static/js/dough.js"></script>
+
+    <script src="/static/js/diagram/BandungHC/dailyhc.js"></script>
+    <script src="/static/js/diagram/BandungHC/monthlyhc.js"></script>
+    <script src="/static/js/diagram/BandungHC/accumhc.js"></script>
+    <script src="/static/js/diagram/BandungHC/monthlyaging.js"></script>
+
+    <script src="/static/js/diagram/CirebonHC/dailyhccrb.js"></script>
+    <script src="/static/js/diagram/CirebonHC/monthlyhccrb.js"></script>
+    <script src="/static/js/diagram/CirebonHC/accumhccrb.js"></script>
+    <script src="/static/js/diagram/CirebonHC/monthlyagingcrb.js"></script>
+
+    <script src="/static/js/diagram/monthlyagingakv.js"></script>
+
+
+    <script src="/static/js/diagram/TasikmalayaHC/dailyhctsk.js"></script>
+    <script src="/static/js/diagram/TasikmalayaHC/monthlyhctsk.js"></script>
+    <script src="/static/js/diagram/TasikmalayaHC/accumhctsk.js"></script>
+    <script src="/static/js/diagram/TasikmalayaHC/monthlyagingtsk.js"></script>
+
+
+    <script src="/static/js/dashboard_assets/dgrmassets1.js"></script>
+    <script src="/static/js/dashboard_assets/dgrmassets2.js"></script>
+    <script src="/static/js/dashboard_assets/dgrmbandung.js"></script>
+    <script src="/static/js/dashboard_assets/dgrmcirebon.js"></script>
+    <script src="/static/js/dashboard_assets/dgrmtasik.js"></script>
+    <script src="/static/js/dashboard_assets/invest.js"></script>
+    <script src="/static/js/dashboard_assets/turcb1.js"></script>
+    <script src="/static/js/dashboard_assets/turcb2.js"></script>
+    <script src="/static/js/dashboard_assets/turcb3.js"></script>
+    <script src="/static/js/dashboard_assets/turtk1.js"></script>
+    <script src="/static/js/dashboard_assets/turtk2.js"></script>
+    <script src="/static/js/dashboard_assets/turtk4.js"></script>
+
+
+
+    <script src="/static/js/diagram/akumulasi.js"></script>
+    <script src="/static/js/diagram/hcvsspa.js"></script>
+    <script src="/static/js/diagram/oavshc.js"></script>
+    <script src="/static/js/totaldougnutbdg.js"></script>
+    <script src="/static/js/dough.js"></script>
+
+    <script src="/static/js/diagram/BandungHC/dailyhc.js"></script>
+    <script src="/static/js/diagram/BandungHC/monthlyhc.js"></script>
+    <script src="/static/js/diagram/BandungHC/accumhc.js"></script>
+    <script src="/static/js/diagram/BandungHC/monthlyaging.js"></script>
+
+    <script src="/static/js/diagram/CirebonHC/dailyhccrb.js"></script>
+    <script src="/static/js/diagram/CirebonHC/monthlyhccrb.js"></script>
+    <script src="/static/js/diagram/CirebonHC/accumhccrb.js"></script>
+    <script src="/static/js/diagram/CirebonHC/monthlyagingcrb.js"></script>
+
+    <script src="/static/js/diagram/monthlyagingakv.js"></script>
+
+
+    <script src="/static/js/diagram/TasikmalayaHC/dailyhctsk.js"></script>
+    <script src="/static/js/diagram/TasikmalayaHC/monthlyhctsk.js"></script>
+    <script src="/static/js/diagram/TasikmalayaHC/accumhctsk.js"></script>
+    <script src="/static/js/diagram/TasikmalayaHC/monthlyagingtsk.js"></script>
+
+
+
+</body>
+
+</html>

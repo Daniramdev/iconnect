@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/dist/css/output.css">
+    <link rel="icon" href="/static/images/logo/Icon.png" type="image/x-icon" class="h-4 w-10">
+    <link flex href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        footer {
+            text-align: center;
+        }
+        
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        ul li {
+            display: inline-block;
+            margin-right: 15px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-left,
+            .footer-right {
+                width: 48%;
+            }
+        }
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            color: #111;
+            display: flex;
+            justify-content: space-between;
+            z-index: 2;
+        }
+        
+        .navbar span {
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .navbar a {
+            color: #111;
+            text-decoration: none;
+            padding: 1px;
+            transition: 0.3s;
+        }
+        
+        .navbar a:hover {
+            background-color: #555;
+        }
+        
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+        
+        .sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 14px;
+            color: #4c4f50;
+            display: block;
+            transition: 0.3s;
+        }
+        
+        .sidebar a:hover {
+            color: #696969;
+        }
+        
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+            color: #111;
+        }
+        
+        #main {
+            transition: margin-left .5s;
+            padding: 16px;
+            margin-top: 60px;
+        }
+        
+        .dropdown-content {
+            display: none;
+            padding-left: 16px;
+        }
+        
+        .dropdown-content a {
+            display: block;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body class="bg-white h-screen text-xs">
+    <div class="navbar bg-white shadow justify-between items-center flex py-2 px-5">
+        <span onclick="openNav()"><i class="bx bx-menu"></i></span>
+        <div>
+            <img src="/static/images/logo/logo-pln-Icon.png" class="h-8" alt="">
+        </div>
+    </div>
+    <!-- Sidebar -->
+    <div class="sidebar bg-white mt-10" id="mySidebar">
+        <a href="javascript:void(0)" class="closebtn mt-3 z-10 " onclick="closeNav()"><i class="bx bx-arrow-back text-xl"></i></a>
+        <a href="{{ url_for('dashboard' )}}"><i class="bx bx-home mr-1"></i> Home</a>
+        <a href="#" onclick="toggleDropdown('dropdown2')"><i class="bx bxs-dashboard mr-2"></i>Data Dashboard</a>
+        <div class="dropdown-content text-xs" id="dropdown2">
+            <a href="{{ url_for('tb_dashboardutama' ) }}"><i class="bx bxs-dashboard mr-2"></i>Data Retail</a>
+            <a href="{{ url_for('tb_tur' )}}"><i class="bx bxs-dashboard mr-2"></i>Data Aseets</a>
+        </div>
+        <a href="#" onclick="toggleDropdown('dropdown3')"><i class="bx bx-folder mr-2"></i>Data assets & Retail</a>
+        <div class="dropdown-content text-xs" id="dropdown3">
+            <a href="{{ url_for('ikr' ) }}"><i class="bx bx-link-external mr-2"></i>Data Assets_OLT</a>
+            <a href="{{ url_for('tb_retail' ) }}"><i class="bx bx-link-external mr-2"></i>Data Retail</a>
+        </div>
+        <a href="{{ url_for('logout' ) }}"><i class="bx bx-log-out mr-2"></i>logout</a>
+    </div>
+
+    <!-- Konten yang sudah ada -->
+
+
+
+
+    {% block content %} {% endblock %}
+
+    <footer>
+        <div class="footer-container text-sm bg-white">
+            <div class="items-center flex justify-center py-2 w-full">
+                <p>&copy; 2024 Iconect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>

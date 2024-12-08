@@ -1,0 +1,179 @@
+{% extends "layout/managedata.html" %} {% block header %} {% block title %}Tabel Point Retail Jabar{% endblock %} {% endblock %} {% block content %}
+<!-- Konten yang sudah ada -->
+<div id="main">
+    <div class="px-4">
+        <h1 class="md:text-xl text-sm  font-bold mb-2">Check Point Retail Jabar</h1>
+        <h2 class="text-sm font-bold mb-2">Data Map Jbb Miles Tone</h2>
+        <div class="container mx-auto items-center flex text-xs mb-2">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <form action="{{ url_for('import_tb_jbbmilestone') }}" method="post" enctype="multipart/form-data">
+                    <div class="items-center flex">
+                        <label for="file" class="block text-gray-500 text-sm"></label>
+                        <input type="file" name="file" id="file" class="border rounded py-1 w-32">
+                        <div class="items-center flex gap-3">
+                            <button type="submit" class="bg-blue-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-r">
+                                            Import
+                                        </button>
+                            <div>
+                                <a href="{{ url_for('export_tb_jbbmilestone')}}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                            Export
+                                            </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form action="/process_option" method="POST">
+                    <div class="items-center flex text-xs">
+                        <select id="dataOption" name="option" class="px-2 py-2 border bg-white rounded-l-lg">
+                            <option value="tb_dashboardutama">Tb_Retail</option>
+                            <option value="tb_dailyhcspa">Tb_Tb_Daily_Hc dan Spa</option>
+                            <option value="tb_jbbmilestone">Tb_jbb_Miles Tone</option>
+                            <option value="tb_aging">Tb_jbb_Aging</option>
+                            <option value="tb_retailtgl">Tb_Check_Retail</option>
+                            <option value="tb_checkretailassets">Tb_Check_Retail Assets</option>
+                
+                                        </select>
+                        <input class="bg-gray-500 text-white hover:bg-slate-400 py-2 px-2 rounded-r" type="submit" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="optionPages" class="w-full mx-auto mt-4 ">
+            <div id="pageOption1" class="bg-white border  p-4 rounded-md shadow-md" style="display: none;">
+                <div class="overflow-x-auto text-xs">
+                    <table id="dataTablePage1" class="table-auto w-full bg-gray-300 rounded-t">
+                        <thead>
+                            <tr>
+                                <th class="px-4 py-2">Tahun</th>
+                                <th class="px-4 py-2">Bandung</th>
+                                <th class="px-4 py-2">Cirebon</th>
+                                <th class="px-4 py-2">Tasik</th>
+                                <th class="px-4 py-2">Action</th>
+                                <!-- Add more columns as needed -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for stone in stone %}
+                            <tr>
+                                <td class="border px-4 py-2">{{stone.tahun}}</td>
+                                <td class="border px-4 py-2">{{stone.bandung}}</td>
+                                <td class="border px-4 py-2">{{stone.cirebon}}</td>
+                                <td class="border px-4 py-2">{{stone.tasik}}</td>
+                                <td class="py-2 px-4 border-b">
+                                    <form method="post" action="{{ url_for('delete_jbbmilestone', id=stone.id) }}" onsubmit="return confirm('Are you sure you want to delete this row?')">
+                                        <button type="submit" class="text-red-500 hover:text-red-700">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="mt-4">
+                        <!-- Option to delete all data -->
+                        <form method="post" action="{{ url_for('delete_all_jbbmilestone') }}" onsubmit="return confirm('Are you sure you want to delete all data?')">
+                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Delete All Data</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mx-auto">
+            <div class="flex justify-end w-full bg-white">
+                <button id="prevPage" class="bg-white px-2 hover:bg-gray-400 rounded">
+                                <i class='bx bx-chevron-left'></i> Previous
+                            </button>
+                <div id="pageInfo" class="p-2 text-center bg-white">
+                    Page <span id="currentPage">1</span> / <span id="totalPages">4</span>
+                </div>
+                <button id="nextPage" class="bg-white px-3 hover:bg-gray-400 rounded ">
+                                Next <i class='bx bx-chevron-right'></i>
+                            </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function toggleDropdown(dropdownId) {
+        var dropdown = document.getElementById(dropdownId);
+
+        // Check if the dropdown is currently visible
+        var isVisible = dropdown.style.display === 'block';
+
+        // Hide all dropdowns
+        var allDropdowns = document.getElementsByClassName('dropdown-content');
+        for (var i = 0; i < allDropdowns.length; i++) {
+            allDropdowns[i].style.display = 'none';
+        }
+
+        // Toggle the selected dropdown based on its current visibility
+        dropdown.style.display = isVisible ? 'none' : 'block';
+    }
+
+    function closeNav() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
+
+    function openNav() {
+        document.getElementById("mySidebar").style.width = "200px";
+        document.getElementById("main").style.marginLeft = "200px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+    }
+    $(document).ready(function() {
+        $('#dataTablePage1').DataTable({
+            responsive: true,
+            searching: true,
+            paging: true,
+            lengthMenu: [10, 20, 50, 100],
+            pageLength: 10,
+        });
+        $('#dataTablePage2').DataTable();
+        $('#dataTablePage3').DataTable();
+        $('#dataTablePage4').DataTable();
+        $('#dataTablePage5').DataTable();
+
+    });
+    let currentPage = 1;
+    const totalPages = 1; // Assuming there are 4 pages
+
+    function showPage(pageNumber) {
+        const allPages = $("#optionPages > div");
+        allPages.hide();
+
+        const selectedPage = $(`#pageOption${pageNumber}`);
+        if (selectedPage.length) {
+            selectedPage.show();
+        }
+
+        // Update page info
+        $("#currentPage").text(pageNumber);
+    }
+
+    $("#prevPage").on("click", function() {
+        if (currentPage > 1) {
+            currentPage--;
+            showPage(currentPage);
+        }
+    });
+
+    $("#nextPage").on("click", function() {
+        if (currentPage < totalPages) {
+            currentPage++;
+            showPage(currentPage);
+        }
+    });
+
+    // Initial page display
+    showPage(currentPage);
+    $("#totalPages").text(totalPages);
+</script>
+
+{% endblock %}

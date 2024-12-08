@@ -1,0 +1,136 @@
+{% extends "layout/user.html" %} {% block title %} Dashboard Assets {% endblock %} {% block content %}
+
+<div class="p-1">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div class="bg-gray-400 w-full shadow-lg rounded">
+            <div class=" justify-center items-center flex p-4 font-bold gap-1 ">
+                <p>{{ formatted_date }}</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-2">
+                <div class="bg-gray-600 h-24 w-full text-center text-white rounded">
+                    <div class="bg-gray-900 rounded-t">
+                        <p>USER</p>
+                    </div>
+                    <div class="py-4 text-sm  justify-center flex">
+                        <p>{{ total_hc }}</p>
+                    </div>
+                </div>
+                <div class="bg-gray-600 h-24 w-full text-center text-white rounded">
+                    <div class="bg-gray-900 rounded-t">
+                        <p>TOTAL USER</p>
+                    </div>
+                    <div class="py-4 text-sm">
+                        <p>{{ total_revenue }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-gray-400 w-full shadow-lg rounded">
+            <div class=" p-4 font-bold">
+                <h1>CHECKRETAIL SPBU JAWABARAT</h1>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-2">
+                <div class="bg-gray-600 h-24 w-full text-white rounded ">
+                    <div class="bg-gray-900 rounded-t text-center">
+                        <p>HCREVENUE {{ year }}</p>
+                    </div>
+
+                    <div class="py-4 text-sm  justify-center items-center flex ">
+                        <p>Rp.{{ total_rev }}</p>
+                    </div>
+
+                </div>
+                <div class="bg-gray-600 h-24 w-full  text-white rounded">
+                    <div class="bg-gray-900 rounded-t text-center">
+                        <p>TOTALREVENUE {{ year }}</p>
+                    </div>
+                    <div class="py-4 px-2  flex text-sm  justify-center items-center">
+                        <p>Rp.{{ total_accumm_rev }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white h-40 w-full shadow-lg justify-center items-center flex rounded">
+            <div class="grid-cols-2 grid gap-4">
+                <img src="/static/images/logo/Iconect.png" alt="">
+                <img src="/static/images/logo/logo-pln-Icon.png" class="h-12" alt="">
+
+            </div>
+        </div>
+
+
+    </div>
+    <div class=" mt-2 gap-3 font-poppins">
+        <divs class="md:grid-cols-5 grid-1 sm:grid-2 lg:grid-3 grid gap-4 md:grid-rows-6">
+            <div class="bg-gray-100 h-80 w-full shadow-lg md:row-span-2 md:w-60 rounded z-20" id="bandwidth"></div>
+            <div class="bg-gray-100 h-72 md:h-full w-full shadow-lg md:row-span-2 md:col-span-2 rounded z-10" id="sale4">
+            </div>
+            <div class="bg-gray-100 h-72 md:h-full w-full shadow-lg md:row-span-2 md:col-span-2 rounded">
+                <div class="grid-row-2 grid">
+                    <div id="revdaily" class="h-[10rem] w-full"></div>
+                    <div id="revaccum" class="h-[10rem] w-full"></div>
+                </div>
+            </div>
+            <div class="bg-gray-100 h-72 w-full shadow-lg md:row-span-5 md:h-full md:w-60 rounded" id="sale5"></div>
+            <div class="bg-gray-100 h-72 md:h-full w-full shadow-lg md:row-span-2 md:col-span-2 rounded" id="revaccum1">
+            </div>
+            <div class="bg-gray-100 h-72 md:h-full w-full shadow-lg md:row-span-2 md:col-span-2 rounded">
+                <div class="grid-row-2 grid">
+                    <div id="revdailycrb" class="h-[10rem] w-full z-20"></div>
+                    <div id="revaccumcrb" class="h-[10rem] w-full z-10"></div>
+                </div>
+            </div>
+            <div class="bg-white h-72 md:h-full w-full shadow-lg md:row-span-2 md:col-span-2 rounded">
+                <div class="text-center font-semibold py-4 px-2 mb-10">
+                    <h1>BJJ MILES STONE</h1>
+                </div>
+                <div class="justify-between flex text-xs">
+                    <div class="z-20 absolute ml-24 -mt-10">
+                        <img src="/static/images/biru tua.png" class="h-16 md:h-28" alt="">
+                    </div>
+                    <div class="z-20 absolute md:ml-72 ml-60 -mt-10">
+                        <img src="/static/images/birumuda.png" class="h-16 md:h-28" alt="">
+                    </div>
+                    <div class=" -mt-10 z-20">
+                        <div class="bg-blue-600 py-2 px-2 rounded text-white font-semibold">
+                            <p>IDR <span>926.426.000</span></p>
+                        </div>
+                    </div>
+                    <div class="z-20 -mt-10 ">
+                        <div class="bg-blue-500 py-2 px-2 mb-16 rounded text-white font-semibold">
+                            <p>IDR <span>675.085.000</span></p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="justify-between flex">
+                    <div class="absolute ml-60 md:ml-72 w-20 md:w-72 z-0 mt-2">
+                        <img src="/static/images/abu.png" class="h-10" alt="">
+                    </div>
+                    <div>
+                    </div>
+                    <div class="mt-2 z-30 absolute ml-72">
+                        <div class="bg-gray-500 py-2 px-2 text-xs rounded z-30 text-white font-semibold -mt-2">
+                            <p>IDR<span> 580.579.000</span></p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="justify-center items-center flex -mt-20 z-0 ">
+                    <img src="/static/images/logo/peta.jpg" class="h-36 md:h-48" alt="">
+                </div>
+
+            </div>
+            <div class="bg-gray-100 h-56 md:h-full w-full shadow-lg md:row-span-2 md:col-span-2 rounded">
+                <div class="grid-row-2 grid">
+                    <div id="revdailytsk" class="h-[10rem] w-full z-10"></div>
+                    <div id="revaccumtsk" class="h-[10rem] w-full -z-0"></div>
+                </div>
+            </div>
+
+        </divs>
+
+    </div>
+</div>
+
+{% endblock %}

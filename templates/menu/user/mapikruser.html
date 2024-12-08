@@ -1,0 +1,541 @@
+{% extends "layout/user.html" %} {% block title %} Map Tur{% endblock %} {% block content %}
+<div>
+    <div class="items-center justify-between flex gap-2 z-30 md:px-56 px-2 text-xs md:translate-x-0 translate-x-28">
+        <div class="overflow-x-auto h-40">
+            <table id="dataTablePage1" class=" table-auto w-40  max-h-20 bg-black rounded-t text-xs text-white">
+                <thead>
+                    <tr>
+                        <th class="px-1 py-1 ">Kab/up3karawang</th>
+                        <th class="px-1 py-1 ">hp</th>
+                        <th class="px-1 py-1 ">hc</th>
+                        <th class="px-1 py-1 ">tur</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-blue-800 text-white">
+                    {% for map in map %}
+                    <tr>
+                        <td class="px-1 py-1 border">{{ map.label_up3_karawang }}</td>
+                        <td class="px-1 py-1 border">{{ map.hp_karawang }}</td>
+                        <td class="px-1 py-1 border">{{ map.hc_karawang }}</td>
+                        <td class="px-1 py-1 border">{{ map.tur_karawang }}%</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="overflow-x-auto h-40 ">
+            <table id="dataTablePage1" class=" z-30 table-auto w-40  max-h-20 bg-black text-white rounded-t text-xs">
+                <thead>
+                    <tr>
+                        <th class="px-1 py-1 ">Kab/up3Purwakarta</th>
+                        <th class="px-1 py-1 ">hp</th>
+                        <th class="px-1 py-1 ">hc</th>
+                        <th class="px-1 py-1 ">tur</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-green-500 text-white">
+                    {% for map in map %}
+                    <tr>
+                        <td class="px-1 py-1 border">{{ map.label_up3_purwakarta }}</td>
+                        <td class="px-1 py-1 border">{{ map.hp_purwakarta }}</td>
+                        <td class="px-1 py-1 border">{{ map.hc_purwakarta }}</td>
+                        <td class="px-1 py-1 border">{{ map.tur_purwakarta }}%</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+        <div class="overflow-x-auto h-40 ">
+            <table id="dataTablePage1" class=" z-30 table-auto w-40  max-h-20 bg-black text-white rounded-t text-xs">
+                <thead>
+                    <tr>
+                        <th class="px-1 py-1 ">Kab/up3Sumedang</th>
+                        <th class="px-1 py-1 ">hp</th>
+                        <th class="px-1 py-1 ">hc</th>
+                        <th class="px-1 py-1 ">tur</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-amber-800 text-white">
+                    {% for map in map %}
+                    <tr>
+                        <td class="px-1 py-1 border">{{ map.label_up3_sumedang }}</td>
+                        <td class="px-1 py-1 border">{{ map.hp_sumedang }}</td>
+                        <td class="px-1 py-1 border">{{ map.hc_sumedang }}</td>
+                        <td class="px-1 py-1 border">{{ map.tur_sumedang }}%</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="justify-center items-center flex">
+        <div class=" grid-cols-3 grid">
+            <div class="justify-start items-center flex-col gap-1 grid z-40">
+                <div class="overflow-x-auto h-40">
+                    <table id="dataTablePage1" class="table-auto w-40 bg-black text-white rounded-t text-xs">
+                        <thead>
+                            <tr>
+                                <th class="px-1 py-1 ">Kab/up3Bandung</th>
+                                <th class="px-1 py-1 ">hp</th>
+                                <th class="px-1 py-1 ">hc</th>
+                                <th class="px-1 py-1 ">tur</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-orange-300">
+                            {% for map in map %}
+                            <tr>
+                                <td class="px-1 py-1 border">{{ map.label_up3_bandung }}</td>
+                                <td class="px-1 py-1 border">{{ map.hp_bandung }}</td>
+                                <td class="px-1 py-1 border">{{ map.hc_bandung }}</td>
+                                <td class="px-1 py-1 border">{{ map.tur_bandung }}%</td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="overflow-x-auto h-40">
+                    <table id="dataTablePage1" class="table-auto w-40 bg-black text-white rounded-t text-xs">
+                        <thead>
+                            <tr>
+                                <th class="px-1 py-1 ">Kab/up3Sukabumi</th>
+                                <th class="px-1 py-1 ">hp</th>
+                                <th class="px-1 py-1 ">hc</th>
+                                <th class="px-1 py-1 ">tur</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-teal-800">
+                            {% for map in map %}
+                            <tr>
+                                <td class="px-1 py-1 border">{{ map.label_up3_sukabumi }}</td>
+                                <td class="px-1 py-1 border">{{ map.hp_sukabumi }}</td>
+                                <td class="px-1 py-1 border">{{ map.hc_sukabumi }}</td>
+                                <td class="px-1 py-1 border">{{ map.tur_sukabumi }}%</td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="overflow-x-auto h-40">
+                    <table id="dataTablePage1" class="table-auto w-40 bg-black text-white rounded-t text-xs">
+                        <thead>
+                            <tr>
+                                <th class="px-1 py-1 ">Kab/up3Cianjur</th>
+                                <th class="px-1 py-1 ">hp</th>
+                                <th class="px-1 py-1 ">hc</th>
+                                <th class="px-1 py-1 ">tur</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-teal-300">
+                            {% for map in map %}
+                            <tr>
+                                <td class="px-1 py-1 border">{{ map.label_up3_cianjur }}</td>
+                                <td class="px-1 py-1 border">{{ map.hp_cianjur }}</td>
+                                <td class="px-1 py-1 border">{{ map.hc_cianjur }}</td>
+                                <td class="px-1 py-1 border">{{ map.tur_cianjur }}%</td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="py-10 justify-center items-center flex z-10 md:translate-x-0 translate-x-28">
+                <img src="/static/images/Picture1.svg" class="h-full max-w-4xl md:w-[50rem] w-[25rem]" alt="">
+            </div>
+            <div class=" absolute z-20">
+                <img src="/static/images/sukabumi.png" class="md:h-16 h-12 md:mt-72 mt-56 md:ml-40 ml-10" alt="">
+            </div>
+            <div class=" absolute z-20">
+                <img src="/static/images/cianjur.png" class="md:h-40 h-28 md:mt-[24rem] mt-72 md:w-[20rem] w-52 md:ml-40" alt="">
+            </div>
+            <div class=" absolute z-20 w-20 md:w-full ">
+                <img src="/static/images/cimahi.png" class="md:h-72 h-60 md:mt-[21rem] mt-[15rem] md:ml-80 ml-44" alt="">
+            </div>
+            <div class=" absolute z-20">
+                <img src="/static/images/bandung1.png" class="md:h-40 h-28 mt-[8.5rem] md:mt-40 md:translate-x-[12rem]" alt="">
+            </div>
+            <div class=" absolute z-20 md:translate-x-[36rem] translate-x-[16rem]">
+                <img src="/static/images/puwakarta1.png" class="md:h-56 h-52 z-20" alt="">
+            </div>
+            <div class="absolute md:mt-[11rem] mt-[10rem] top-20 md:translate-x-[20rem] translate-x-40 z-20">
+                <img src="/static/images/bitmap3.png" class="md:h-36 h-36 md:w-full w-24 " class=" justify-start flex" alt="">
+            </div>
+            <div class="absolute md:mt-[42rem] mt-[36rem] top-20 md:translate-x-[49rem] translate-x-[22rem] z-20">
+                <img src="/static/images/tasik1.png" class="md:h-4 h-3  md:w-[16rem] md:rotate-0 rotate-45" class=" justify-start flex" alt="">
+            </div>
+            <div class="absolute md:mt-[40rem]  md:w-full w-36 mt-[31rem] top-20 md:translate-x-[40rem] translate-x-[20rem]  z-20">
+                <img src="/static/images/garut.png" class="h-40 " class=" justify-start flex" alt="">
+            </div>
+            <div class="absolute md:mt-[35rem] mt-[28rem] top-20 md:translate-x-[35rem] translate-x-64 z-20">
+                <img src="/static/images/majalaya.png" class="md:h-60 h-52 " class=" justify-start flex" alt="">
+            </div>
+            <div class="absolute md:mt-[26rem] mt-[23rem] top-20 md:translate-x-[55rem] translate-x-[27rem] z-20">
+                <img src="/static/images/cirebon.png" class="md:h-20 h-16 " class=" justify-start flex" alt="">
+            </div>
+            <div class="absolute md:mt-[11rem] mt-[10rem] top-20 md:translate-x-[46rem] translate-x-[22rem] z-20">
+                <img src="/static/images/sumedang.png" class="md:h-72 h-64 " class=" justify-start flex" alt="">
+            </div>
+            <div class="absolute md:mt-[15rem] mt-[rem] top-20 md:translate-x-[52rem] translate-x-[23rem] z-20">
+                <img src="/static/images/indramayu.png" class="h-32" class=" justify-start flex" alt="">
+            </div>
+
+            <div class="justify-end items-center flex-col gap-1 grid z-30 md:translate-x-0 translate-x-56">
+                <div class="overflow-x-auto h-40">
+                    <table id="dataTablePage1" class="table-auto w-40 bg-black text-white rounded-t text-xs">
+                        <thead>
+                            <tr>
+                                <th class="px-1 py-1 ">Kab/up3Indramayu</th>
+                                <th class="px-1 py-1 ">hp</th>
+                                <th class="px-1 py-1 ">hc</th>
+                                <th class="px-1 py-1 ">tur</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-amber-400">
+                            {% for map in map %}
+                            <tr>
+                                <td class="px-1 py-1 border">{{ map.label_up3_indramayu}}</td>
+                                <td class="px-1 py-1 border">{{ map.hp_indramayu}}</td>
+                                <td class="px-1 py-1 border">{{ map.hc_indramayu}}</td>
+                                <td class="px-1 py-1 border">{{ map.tur_indramayu}}%</td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="overflow-x-auto h-40">
+                    <table id="dataTablePage1" class="table-auto w-40 bg-black text-white rounded-t text-xs">
+                        <thead>
+                            <tr>
+                                <th class="px-1 py-1 ">Kab/up3Cirebon</th>
+                                <th class="px-1 py-1 ">hp</th>
+                                <th class="px-1 py-1 ">hc</th>
+                                <th class="px-1 py-1 ">tur</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-red-500">
+                            {% for map in map %}
+                            <tr>
+                                <td class="px-1 py-1 border">{{ map.label_up3_cirebon }}</td>
+                                <td class="px-1 py-1 border">{{ map.hp_cirebon }}</td>
+                                <td class="px-1 py-1 border">{{ map.hc_cirebon }}</td>
+                                <td class="px-1 py-1 border">{{ map.tur_cirebon }}%</td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="overflow-x-auto h-40">
+                    <table id="dataTablePage1" class="table-auto w-40 bg-black text-white rounded-t text-xs">
+                        <thead>
+                            <tr>
+                                <th class="px-1 py-1 ">Kab/up3Tasikmalaya</th>
+                                <th class="px-1 py-1 ">hp</th>
+                                <th class="px-1 py-1 ">hc</th>
+                                <th class="px-1 py-1 ">tur</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-zinc-400">
+                            {% for map in map %}
+                            <tr>
+                                <td class="px-1 py-1 border">{{ map.label_up3_tasikmalaya }}</td>
+                                <td class="px-1 py-1 border">{{ map.hp_tasikmalaya }}</td>
+                                <td class="px-1 py-1 border">{{ map.hc_tasikmalaya }}</td>
+                                <td class="px-1 py-1 border">{{ map.tur_tasikmalaya }}%</td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="items-center justify-between flex gap-2 md:px-56 px-2 md:translate-x-0 translate-x-28">
+        <div class="overflow-x-auto h-40 ">
+            <table id="dataTablePage1" class=" z-30 table-auto w-40  max-h-20 bg-black text-white rounded-t text-xs">
+                <thead>
+                    <tr>
+                        <tr>
+                            <th class="px-1 py-1 ">Kab/up3Cimahi</th>
+                            <th class="px-1 py-1 ">hp</th>
+                            <th class="px-1 py-1 ">hc</th>
+                            <th class="px-1 py-1 ">tur</th>
+                        </tr>
+                    </tr>
+                </thead>
+                <tbody class="bg-green-950">
+                    {% for map in map %}
+                    <tr>
+                        <td class="px-1 py-1 border">{{ map.label_up3_cimahi }}</td>
+                        <td class="px-1 py-1 border">{{ map.hp_cimahi }}</td>
+                        <td class="px-1 py-1 border">{{ map.hc_cimahi }}</td>
+                        <td class="px-1 py-1 border">{{ map.tur_cimahi }}%</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+        <div class="overflow-x-auto h-40 ">
+            <table id="dataTablePage1" class=" z-30 table-auto w-40  max-h-20 bg-black text-white rounded-t text-xs">
+                <thead>
+                    <tr>
+                        <th class="px-1 py-1 ">Kab/up3Majalaya</th>
+                        <th class="px-1 py-1 ">hp</th>
+                        <th class="px-1 py-1 ">hc</th>
+                        <th class="px-1 py-1 ">tur</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-indigo-800">
+                    {% for map in map %}
+                    <tr>
+                        <td class="px-1 py-1 border">{{ map.label_up3_majalaya}}</td>
+                        <td class="px-1 py-1 border">{{ map.hp_majalaya}}</td>
+                        <td class="px-1 py-1 border">{{ map.hc_majalaya}}</td>
+                        <td class="px-1 py-1 border">{{ map.tur_majalaya}}%</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+        <div class="overflow-x-auto h-40 ">
+            <table id="dataTablePage1" class=" z-30 table-auto w-40  max-h-20 bg-black text-white rounded-t text-xs">
+                <thead>
+                    <tr>
+                        <th class="px-1 py-1 ">Kab/up3Garut</th>
+                        <th class="px-1 py-1 ">hp</th>
+                        <th class="px-1 py-1 ">hc</th>
+                        <th class="px-1 py-1 ">tur</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-orange-600">
+                    {% for map in map %}
+                    <tr>
+                        <td class="px-1 py-1 border">{{ map.label_up3_garut}}</td>
+                        <td class="px-1 py-1 border">{{ map.hp_garut}}</td>
+                        <td class="px-1 py-1 border">{{ map.hc_garut}}</td>
+                        <td class="px-1 py-1 border">{{ map.tur_garut}}%</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+    <div class="gap-2 z-30 md:px-56 px-2 text-xs md:translate-x-0 translate-x-28 mt-44 mb-20">
+        <div class="absolute left-0 ">
+            <div class="items-center flex">
+                <div class="bg-blue-500 py-2 w-20 h-4 mr-2"></div>
+                <p>Homepass</p>
+            </div>
+            <div class="items-center flex">
+                <div class="bg-green-500 w-20 h-4 mr-2"></div>
+                <p>Home Connected</p>
+            </div>
+            <div class="items-center flex">
+                <div class="bg-amber-500 w-20 h-4 mr-2"></div>
+                <p>TUR</p>
+            </div>
+        </div>
+        <!-- --karawang -->
+        {% for map1 in map1 %}
+        <div class="absolute z-30">
+            <div class="h-24 w-24 text-xs text-center">
+                <p class="border py-2 px-2  bg-blue-500 ">{{ map1.hp_kab_karawang }}</p>
+                <p class="border py-2 px-2 bg-green-500 ">{{ map1.hc_kab_karawang }}</p>
+                <p class="border py-2 px-2 bg-amber-500 ">{{ map1.tur_kab_karawang }}%</p>
+            </div>
+        </div>
+        <!-- endkarawang -->
+
+        <!-- subang -->
+        <div class="bg-slate-500 h-24 w-24 text-xs text-center left-[35rem] absolute z-30 -mt-16">
+            <p class="border py-2 px-2 bg-blue-500  ">{{ map1.hp_kab_subang }}</p>
+            <p class="border py-2 px-2 bg-green-500 ">{{ map1.hc_kab_subang }}</p>
+            <p class="border py-2 px-2 bg-amber-500 ">{{ map1.tur_kab_subang }}%</p>
+        </div>
+        <!-- endsubang -->
+
+        <div class="bg-slate-500 h-24 w-24 text-xs text-center left-[44rem] absolute z-30">
+            <p class="border py-2 px-2 bg-blue-500  ">{{ map1.hp_kab_indramayu }}</p>
+            <p class="border py-2 px-2 bg-green-500 ">{{ map1.hc_kab_indramayu }}</p>
+            <p class="border py-2 px-2 bg-amber-500 ">{{ map1.tur_kab_indramayu}}%</p>
+        </div>
+
+        <div class="bg-slate-500 h-24 w-24 text-xs text-center left-[52rem] absolute z-30">
+            <p class="border py-2 px-2 bg-blue-500  ">{{ map1.hp_kab_sumedang }}</p>
+            <p class="border py-2 px-2 bg-green-500 ">{{ map1.hc_kab_sumedang }}</p>
+            <p class="border py-2 px-2 bg-amber-500 ">{{ map1.tur_kab_sumedang}}%</p>
+        </div>
+        <div class="bg-slate-500 h-24 w-24 text-xs text-center left-[59rem] absolute z-30">
+            <p class="border py-2 px-2 bg-blue-500  ">{{ map1.hp_kab_cirebon }}</p>
+            <p class="border py-2 px-2 bg-green-500 ">{{ map1.hc_kab_cirebon }}</p>
+            <p class="border py-2 px-2 bg-amber-500 ">{{ map1.tur_kab_cirebon}}%</p>
+        </div>
+        <div class="bg-slate-500 h-24 w-24 text-xs text-center left-[65rem] absolute z-30 mt-32">
+            <p class="border py-2 px-2 bg-blue-500  ">{{ map1.hp_kab_majalengka }}</p>
+            <p class="border py-2 px-2 bg-green-500 ">{{ map1.hc_kab_majalengka }}</p>
+            <p class="border py-2 px-2 bg-amber-500 ">{{ map1.tur_kab_majalengka}}%</p>
+        </div>
+
+        <div class="absolute z-30 mt-40">
+            <div class=" items-center flex gap-3">
+
+                <div class="bg-slate-500 h-24 w-24 text-xs text-center">
+                    <p class="border py-2 px-2 bg-blue-500  ">{{ map1.hp_kab_puwakarta }}</p>
+                    <p class="border py-2 px-2 bg-green-500 ">{{ map1.hc_kab_puwakarta }}</p>
+                    <p class="border py-2 px-2 bg-amber-500 ">{{ map1.tur_kab_puwakarta}}%</p>
+                </div>
+                <div class="bg-slate-500 h-24 w-24 text-xs text-center">
+                    <p class="border py-2 px-2 bg-blue-500  ">{{ map1.hp_kota_bandung }}</p>
+                    <p class="border py-2 px-2 bg-green-500 ">{{ map1.hc_kota_bandung}}</p>
+                    <p class="border py-2 px-2 bg-amber-500 ">{{ map1.tur_kota_bandung}}%</p>
+                </div>
+            </div>
+            <div class="bg-slate-500 h-24 w-24 text-xs text-center -left-36 absolute">
+                <p class="border py-2 px-2 bg-blue-500  ">{{ map1.hp_kab_cimahi }}</p>
+                <p class="border py-2 px-2 bg-green-500 ">{{ map1.hc_kab_cimahi}}</p>
+                <p class="border py-2 px-2 bg-amber-500 ">{{ map1.tur_kab_cimahi}}%</p>
+            </div>
+
+            <div class="bg-slate-500 h-24 w-24 text-xs text-center -left-36 absolute mt-32">
+                <p class="border py-2 px-2 bg-blue-500  ">{{ map1.hp_kab_bandungbarat }}</p>
+                <p class="border py-2 px-2 bg-green-500 ">{{ map1.hc_kab_bandungbarat}}</p>
+                <p class="border py-2 px-2 bg-amber-500 ">{{ map1.tur_kab_bandungbarat}}%</p>
+            </div>
+
+            <div class="bg-slate-500 h-24 w-24 text-xs text-center -left-36 absolute mt-60">
+                <p class="border py-2 px-2 bg-blue-500  ">{{ map1.hp_kab_sukabumi }}</p>
+                <p class="border py-2 px-2 bg-green-500 ">{{ map1.hc_kab_sukabumi}}</p>
+                <p class="border py-2 px-2 bg-amber-500 ">{{ map1.tur_kab_sukabumi}}%</p>
+            </div>
+
+            <div class="bg-slate-500 h-24 w-24 text-xs text-center left-6 absolute mt-80">
+                <p class="border py-2 px-2 bg-blue-500  ">{{ map1.hp_kab_cianjur }}</p>
+                <p class="border py-2 px-2 bg-green-500 ">{{ map1.hc_kab_cianjur}}</p>
+                <p class="border py-2 px-2 bg-amber-500 ">{{ map1.tur_kab_cianjur}}%</p>
+            </div>
+
+            <div class="bg-slate-500 h-24 w-24 text-xs text-center left-60 absolute mt-80">
+                <p class="border py-2 px-2 bg-blue-500  ">{{ map1.hp_kab_bandung }}</p>
+                <p class="border py-2 px-2 bg-green-500 ">{{ map1.hc_kab_bandung}}</p>
+                <p class="border py-2 px-2 bg-amber-500 ">{{ map1.tur_kab_bandung}}%</p>
+            </div>
+            <div class="bg-slate-500 h-24 w-24 text-xs text-center left-[24rem] absolute mt-[24rem]">
+                <p class="border py-2 px-2 bg-blue-500  ">{{ map1.hp_kab_garut }}</p>
+                <p class="border py-2 px-2 bg-green-500 ">{{ map1.hc_kab_garut}}</p>
+                <p class="border py-2 px-2 bg-amber-500 ">{{ map1.tur_kab_garut}}%</p>
+            </div>
+            <div class="bg-slate-500 h-24 w-24 text-xs text-center left-[32rem] absolute mt-[24rem]">
+                <p class="border py-2 px-2 bg-blue-500  ">{{ map1.hp_kab_tasikmalaya }}</p>
+                <p class="border py-2 px-2 bg-green-500 ">{{ map1.hc_kab_tasikmalaya}}</p>
+                <p class="border py-2 px-2 bg-amber-500 ">{{ map1.tur_kab_tasikmalaya}}%</p>
+            </div>
+            <div class="bg-slate-500 h-24 w-24 text-xs text-center left-[40rem] absolute mt-[24rem]">
+                <p class="border py-2 px-2 bg-blue-500  ">{{ map1.hp_kab_pangandaran }}</p>
+                <p class="border py-2 px-2 bg-green-500 ">{{ map1.hc_kab_pangandaran}}</p>
+                <p class="border py-2 px-2 bg-amber-500 ">{{ map1.tur_kab_pangandaran}}%</p>
+            </div>
+            <div class="bg-slate-500 h-24 w-24 text-xs text-center left-[52rem] absolute mt-[16rem]">
+                <p class="border py-2 px-2 bg-blue-500  ">{{ map1.hp_kota_banjar }}</p>
+                <p class="border py-2 px-2 bg-green-500 ">{{ map1.hc_kota_banjar }}</p>
+                <p class="border py-2 px-2 bg-amber-500 ">{{ map1.tur_kota_banjar}}%</p>
+            </div>
+            <div class="bg-slate-500 h-24 w-24 text-xs text-center left-[52rem] absolute mt-[8rem]">
+                <p class="border py-2 px-2 bg-blue-500  ">{{ map1.hp_kab_ciamis }}</p>
+                <p class="border py-2 px-2 bg-green-500 ">{{ map1.hc_kab_ciamis }}</p>
+                <p class="border py-2 px-2 bg-amber-500 ">{{ map1.tur_kab_ciamis }}%</p>
+            </div>
+
+            <div class="bg-slate-500 h-24 w-24 text-xs text-center left-[52rem] absolute mt-[1rem]">
+                <p class="border py-2 px-2 bg-blue-500  ">{{ map1.hp_kab_kuningan }}</p>
+                <p class="border py-2 px-2 bg-green-500 ">{{ map1.hc_kab_kuningan }}</p>
+                <p class="border py-2 px-2 bg-amber-500 ">{{ map1.tur_kab_kuningan }}%</p>
+            </div>
+            {% endfor %}
+
+
+
+        </div>
+        <div class="absolute z-20 mt-[14rem] ml-10">
+            <img src="/static/images/maps/puwakarta1.png" class="h-[4rem] w-[16.4rem]" alt="">
+        </div>
+        <div class="absolute z-20 mt-[2rem] ml-[24rem]">
+            <img src="/static/images/maps/subang.png" class="h-[12rem]" alt="">
+        </div>
+        <div class="absolute z-20 mt-[4rem] ml-[32rem]">
+            <img src="/static/images/maps/indramayu.png" class="h-[10rem]" alt="">
+        </div>
+        <div class="absolute z-20 mt-[4rem] ml-[31rem]">
+            <img src="/static/images/maps/sumedang.png" class="h-[16rem]" alt="">
+        </div>
+        <div class="absolute z-20 mt-[5rem] ml-[40rem]">
+            <img src="/static/images/maps/cirebon.png" class="h-[12rem]" alt="">
+        </div>
+        <div class="absolute z-20 mt-[10rem] ml-[38rem]">
+            <img src="/static/images/maps/majalengkapng.png" class="h-[10rem]" alt="">
+        </div>
+        <div class="absolute z-20 mt-[18rem] ml-[44rem]">
+            <img src="/static/images/maps/kuningan.png" class="h-[5rem]" alt="">
+        </div>
+        <div class="absolute z-20 mt-[24rem] ml-[40rem]">
+            <img src="/static/images/maps/ciamis.png" class="h-[4rem]" alt="">
+        </div>
+        <div class="absolute z-20 mt-[29rem] ml-[41rem]">
+            <img src="/static/images/maps/banjar.png" class="h-[5rem]" alt="">
+        </div>
+        <div class="absolute z-20 mt-[35rem] ml-[42rem]">
+            <img src="/static/images/maps/pangandaran.png" class="h-[8rem]" alt="">
+        </div>
+        <div class="absolute z-20 mt-[35rem] ml-[34rem]">
+            <img src="/static/images/maps/tasik.png" class="h-[8rem]" alt="">
+        </div>
+        <div class="absolute z-20 mt-[18rem] left-44">
+            <img src="/static/images/maps/cimahi.png" class="h-[4rem]" alt="">
+        </div>
+        <div class="absolute z-20 mt-[26rem] left-28">
+            <img src="/static/images/maps/sukabumi.png" class="h-[8rem]" alt="">
+        </div>
+
+        <div class="absolute z-20 mt-[27rem] left-[22rem]">
+            <img src="/static/images/maps/cianjur1.png" class="h-[12rem]" alt="">
+        </div>
+        <div class="absolute z-20 mt-[27rem] left-[32rem]">
+            <img src="/static/images/maps/kabbdg.png" class="h-[12rem]" alt="">
+        </div>
+        <div class="absolute z-20 mt-[33rem] left-[40rem]">
+            <img src="/static/images/maps/garutpng.png" class="h-[12rem]" alt="">
+        </div>
+        <div class="absolute z-20 mt-[23rem] left-32">
+            <img src="/static/images/maps/bandung.png" class="h-[3rem]" alt="">
+        </div>
+        <div class="absolute z-20 mt-[13rem] ml-52">
+            <img src="/static/images/maps/kotabandung.png" class="h-[10rem]" alt="">
+        </div>
+        <div class="absolute z-20 mt-14">
+            <img src="/static/images/maps/karawang2.png" class="w-[20rem] h-[6rem]" alt="">
+        </div>
+        <div class="py-10 justify-center items-center flex z-10 md:translate-x-0 translate-x-28">
+            <img src="/static/images/maps.svg" class="h-full max-w-4xl md:w-[50rem] w-[25rem]" alt="">
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}
